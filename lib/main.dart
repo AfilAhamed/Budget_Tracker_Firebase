@@ -1,5 +1,5 @@
 import 'package:budget_tracker/firebase_options.dart';
-import 'package:budget_tracker/view/home_screen/home_screen.dart';
+import 'package:budget_tracker/view/login_screen/signup.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: false,
       ),
-      home: HomeScreen(),
+      home: LoginScreen(),
     );
   }
 }
