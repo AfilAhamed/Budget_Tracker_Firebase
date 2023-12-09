@@ -1,7 +1,9 @@
+import 'package:budget_tracker/controller/signup_controller.dart';
 import 'package:budget_tracker/firebase_options.dart';
-import 'package:budget_tracker/view/login_screen/signup.dart';
+import 'package:budget_tracker/view/login_screen/user_login_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,13 +16,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Budget Tracker',
-      theme: ThemeData(
-        useMaterial3: false,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => SignUpController())
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Budget Tracker',
+        theme: ThemeData(
+          useMaterial3: false,
+        ),
+        home: UserLoginScreen(),
       ),
-      home: LoginScreen(),
     );
   }
 }
