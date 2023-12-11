@@ -1,4 +1,6 @@
 import 'package:budget_tracker/controller/signup_controller.dart';
+import 'package:budget_tracker/helpers/decoration.dart';
+import 'package:budget_tracker/view/login_screen/user_login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
@@ -37,37 +39,38 @@ class SignUpScreen extends StatelessWidget {
                     height: 30,
                   ),
                   TextFormField(
+                      controller: signupProvider.userNameController,
                       validator: signupProvider.validateUserName,
-                      decoration: signupProvider.inputDecration(
-                          'Username', Icons.person_pin_rounded)),
+                      decoration:
+                          inputDecration('Username', Icons.person_pin_rounded)),
                   const SizedBox(
                     height: 16.0,
                   ),
                   TextFormField(
+                      controller: signupProvider.emailController,
                       keyboardType: TextInputType.emailAddress,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       validator: signupProvider.validateEmail,
-                      decoration:
-                          signupProvider.inputDecration('E-Mail', Icons.email)),
+                      decoration: inputDecration('E-Mail', Icons.email)),
                   const SizedBox(
                     height: 16.0,
                   ),
                   TextFormField(
+                    controller: signupProvider.phoneNumberController,
                     keyboardType: TextInputType.number,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: signupProvider.validatePhoneNumber,
-                    decoration: signupProvider.inputDecration(
-                        'Phone Number', Icons.phone),
+                    decoration: inputDecration('Phone Number', Icons.phone),
                   ),
                   const SizedBox(
                     height: 16.0,
                   ),
                   TextFormField(
-                    obscureText: true,
+                    controller: signupProvider.passwordController,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: signupProvider.validatePasswords,
-                    decoration: signupProvider.inputDecration(
-                        'Password', Iconsax.password_check),
+                    decoration:
+                        inputDecration('Password', Iconsax.password_check),
                   ),
                   const SizedBox(
                     height: 25.0,
@@ -82,10 +85,16 @@ class SignUpScreen extends StatelessWidget {
                               backgroundColor: Colors.blue.shade600),
                           onPressed: () {
                             if (formKey.currentState!.validate()) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                      content:
-                                          Text('Form submitted successfully')));
+                              signupProvider.sumbitData();
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const UserLoginScreen()));
+                              // ScaffoldMessenger.of(context).showSnackBar(
+                              //     const SnackBar(
+                              //         content:
+                              //             Text('Form submitted successfully')));
                             }
                           },
                           child: Text(

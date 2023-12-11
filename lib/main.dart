@@ -1,6 +1,7 @@
 import 'package:budget_tracker/controller/signup_controller.dart';
+import 'package:budget_tracker/controller/user_login_controller.dart';
 import 'package:budget_tracker/firebase_options.dart';
-import 'package:budget_tracker/view/login_screen/user_login_screen.dart';
+import 'package:budget_tracker/view/auth_gate_screen/auth_gate.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -18,7 +19,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => SignUpController())
+        ChangeNotifierProvider(create: (context) => SignUpController()),
+        ChangeNotifierProvider(create: (context) => UserLoginController())
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -26,7 +28,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           useMaterial3: false,
         ),
-        home: UserLoginScreen(),
+        home: const AuthGateWay(),
       ),
     );
   }

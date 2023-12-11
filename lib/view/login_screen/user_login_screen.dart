@@ -1,13 +1,19 @@
+import 'package:budget_tracker/controller/user_login_controller.dart';
+// import 'package:budget_tracker/view/home_screen/home_screen.dart';
 import 'package:budget_tracker/view/signup_screen/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:provider/provider.dart';
 
 class UserLoginScreen extends StatelessWidget {
   const UserLoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final loginProvider = Provider.of<UserLoginController>(context);
+    final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -21,7 +27,7 @@ class UserLoginScreen extends StatelessWidget {
                   style: GoogleFonts.aDLaMDisplay(
                       fontSize: 40, fontWeight: FontWeight.w500),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
                 Text(
@@ -37,9 +43,13 @@ class UserLoginScreen extends StatelessWidget {
               height: 20,
             ),
             Form(
+              key: formKey,
               child: Column(
                 children: [
                   TextFormField(
+                    validator: loginProvider.loginValidateEmail,
+                    controller: loginProvider.emailController,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     decoration: InputDecoration(
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10)),
@@ -54,6 +64,10 @@ class UserLoginScreen extends StatelessWidget {
                     height: 15,
                   ),
                   TextFormField(
+                    validator: loginProvider.loginValidatePasswords,
+                    controller: loginProvider.passwordController,
+                    obscureText: true,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     decoration: InputDecoration(
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10)),
@@ -61,7 +75,9 @@ class UserLoginScreen extends StatelessWidget {
                         labelStyle: const TextStyle(
                             fontWeight: FontWeight.w500, color: Colors.black),
                         prefixIcon: const Icon(Iconsax.password_check),
-                        suffixIcon: const Icon(Iconsax.eye_slash)),
+                        suffixIcon: IconButton(
+                            onPressed: () {},
+                            icon: const Icon(Iconsax.eye_slash))),
                   ),
                   const SizedBox(
                     height: 5,
@@ -99,7 +115,18 @@ class UserLoginScreen extends StatelessWidget {
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(13)),
                               backgroundColor: Colors.blue.shade700),
-                          onPressed: () {},
+                          onPressed: () {
+                            if (formKey.currentState!.validate()) {
+                              loginProvider.login();
+                              // loginProvider.emailController.clear();
+                              // loginProvider.passwordController.clear();
+                              // Navigator.pushReplacement(
+                              //     context,
+                              //     MaterialPageRoute(
+                              //         builder: (context) =>
+                              //             const HomeScreen()));
+                            }
+                          },
                           child: Text(
                             'Sign in',
                             style: GoogleFonts.mali(

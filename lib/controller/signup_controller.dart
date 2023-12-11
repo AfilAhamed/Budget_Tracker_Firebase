@@ -1,6 +1,23 @@
+import 'package:budget_tracker/services/auth_services.dart';
 import 'package:flutter/material.dart';
 
 class SignUpController extends ChangeNotifier {
+  final TextEditingController userNameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController phoneNumberController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  void sumbitData() async {
+    final data = {
+      'username': userNameController.text,
+      'email': emailController.text,
+      'phone number': phoneNumberController.text,
+      'password': passwordController.text,
+    };
+    await AuthServices().createUsers(data);
+    notifyListeners();
+  }
+
   //validation for username
   String? validateUserName(value) {
     if (value == null || value.isEmpty) {
@@ -44,15 +61,5 @@ class SignUpController extends ChangeNotifier {
     } else {
       return null;
     }
-  }
-
-  //refactor widget for inputdecrotion
-  InputDecoration inputDecration(text, IconData prefixIcon) {
-    return InputDecoration(
-        labelText: text,
-        labelStyle:
-            const TextStyle(fontWeight: FontWeight.w500, color: Colors.black),
-        prefixIcon: Icon(prefixIcon),
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)));
   }
 }
