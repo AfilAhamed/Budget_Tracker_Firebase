@@ -6,7 +6,7 @@ class AuthServices {
   final firebaseAuth = FirebaseAuth.instance;
 
   //function for register user sign up  with email and password
-  Future<void> createUsers(data) async {
+  Future<void> createUsers(Map data) async {
     try {
       await firebaseAuth.createUserWithEmailAndPassword(
         email: data['email'],

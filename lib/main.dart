@@ -1,3 +1,4 @@
+import 'package:budget_tracker/controller/bottombar_controller.dart';
 import 'package:budget_tracker/controller/signup_controller.dart';
 import 'package:budget_tracker/controller/user_login_controller.dart';
 import 'package:budget_tracker/firebase_options.dart';
@@ -20,7 +21,8 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => SignUpController()),
-        ChangeNotifierProvider(create: (context) => UserLoginController())
+        ChangeNotifierProvider(create: (context) => UserLoginController()),
+        ChangeNotifierProvider(create: (context) => BottomBarController())
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

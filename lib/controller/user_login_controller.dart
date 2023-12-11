@@ -4,16 +4,13 @@ import 'package:flutter/material.dart';
 class UserLoginController extends ChangeNotifier {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  bool isloading = false;
 
   void login() async {
-    isloading = true;
     final data = {
       'email': emailController.text,
       'password': passwordController.text,
     };
     await AuthServices().loginUser(data);
-    isloading = false;
 
     notifyListeners();
   }
