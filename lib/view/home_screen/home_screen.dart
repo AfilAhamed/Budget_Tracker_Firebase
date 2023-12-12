@@ -5,9 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomeScreen extends StatelessWidget {
-  HomeScreen({super.key});
-
-  var appIcons = AppIcons();
+  const HomeScreen({super.key});
 
   logout() async {
     await FirebaseAuth.instance.signOut();
@@ -72,20 +70,20 @@ class HomeScreen extends StatelessWidget {
                           ],
                           borderRadius: BorderRadius.circular(15)),
                       child: Padding(
-                        padding: const EdgeInsets.all(10),
+                        padding: const EdgeInsets.all(7),
                         child: ListTile(
-                          leading: Container(
+                          leading: SizedBox(
                             height: 100,
                             width: 80,
                             child: Container(
-                              width: 30,
-                              height: 30,
+                              width: 40,
+                              height: 40,
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
                                   color: Colors.green.withOpacity(0.2)),
                               child: Center(
-                                  child: FaIcon(appIcons
-                                      .getExpenseCategoryIcons('milk'))),
+                                  child: FaIcon(AppIcons()
+                                      .getExpenseCategoryIcons('Grocery'))),
                             ),
                           ),
                           tileColor: Colors.white,
@@ -99,12 +97,14 @@ class HomeScreen extends StatelessWidget {
                               )),
                               Text(
                                 '₹ 8000',
-                                style: TextStyle(color: Colors.green),
+                                style: TextStyle(
+                                    color: Colors.green,
+                                    fontWeight: FontWeight.bold),
                               ),
                             ],
                           ),
                           subtitle: const Padding(
-                            padding: EdgeInsets.only(top: 5),
+                            padding: EdgeInsets.only(top: 3),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.start,

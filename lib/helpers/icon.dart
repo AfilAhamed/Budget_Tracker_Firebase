@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -10,7 +9,7 @@ class AppIcons {
     },
     {
       "name": "Grocery",
-      "icon": FontAwesomeIcons.shoppingCart,
+      "icon": FontAwesomeIcons.cartShopping,
     },
     {"name": "milk", "icon": FontAwesomeIcons.mugHot},
     {"name": "home", "icon": FontAwesomeIcons.productHunt},
@@ -28,7 +27,7 @@ class AppIcons {
   IconData getExpenseCategoryIcons(String catagoryName) {
     final category = homeExpenesesCategories.firstWhere(
         (category) => category['name'] == catagoryName,
-        orElse: () => {"icon": FontAwesomeIcons.shoppingCart});
+        orElse: () => {"icon": FontAwesomeIcons.cartShopping});
     return category['icon'];
   }
 }
