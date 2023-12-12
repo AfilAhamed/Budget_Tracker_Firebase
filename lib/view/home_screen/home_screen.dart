@@ -1,5 +1,5 @@
 import 'package:budget_tracker/helpers/icon.dart';
-import 'package:budget_tracker/view/home_screen/widget/transactions_cards.dart';
+import 'package:budget_tracker/view/home_screen/widget/overview_card.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -28,8 +28,7 @@ class HomeScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
-          //--
-          const MainCard(),
+          const BudgetOverviewCard(),
           Padding(
             padding:
                 const EdgeInsets.only(top: 0, left: 10, bottom: 0, right: 10),
@@ -143,67 +142,11 @@ class HomeScreen extends StatelessWidget {
           )
         ],
       ),
-    );
-  }
-}
-
-class MainCard extends StatelessWidget {
-  const MainCard({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Colors.blue.shade900,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Padding(
-            padding: EdgeInsets.all(15),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Total Balance',
-                  style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w600),
-                ),
-                Text(
-                  '₹ 582000',
-                  style: TextStyle(
-                      fontSize: 44,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w600),
-                )
-              ],
-            ),
-          ),
-          Container(
-            padding:
-                const EdgeInsets.only(top: 30, bottom: 10, left: 10, right: 10),
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30), topRight: Radius.circular(30)),
-              color: Colors.white,
-            ),
-            child: const Row(
-              children: [
-                TransactionsCard(
-                  color: Colors.green,
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                TransactionsCard(
-                  color: Colors.red,
-                ),
-              ],
-            ),
-          )
-        ],
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: Colors.blue.shade900,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+        child: const Icon(Icons.add),
       ),
     );
   }
