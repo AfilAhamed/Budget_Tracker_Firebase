@@ -1,9 +1,13 @@
+import 'package:budget_tracker/helpers/icon.dart';
 import 'package:budget_tracker/view/home_screen/widget/transactions_cards.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  HomeScreen({super.key});
+
+  var appIcons = AppIcons();
 
   logout() async {
     await FirebaseAuth.instance.signOut();
@@ -12,7 +16,15 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        actions: [
+          IconButton(
+              onPressed: () {
+                logout();
+              },
+              icon: const Icon(Icons.exit_to_app))
+        ],
         elevation: 0,
         backgroundColor: Colors.blue.shade900,
       ),
@@ -21,7 +33,8 @@ class HomeScreen extends StatelessWidget {
           //--
           const MainCard(),
           Padding(
-            padding: const EdgeInsets.all(10),
+            padding:
+                const EdgeInsets.only(top: 0, left: 10, bottom: 0, right: 10),
             child: Row(
               children: [
                 const Text(
@@ -52,46 +65,75 @@ class HomeScreen extends StatelessWidget {
                           boxShadow: [
                             BoxShadow(
                               offset: const Offset(0, 10),
-                              color: Colors.grey.withOpacity(0.09),
+                              color: Colors.grey.withOpacity(0.15),
                               blurRadius: 10.0,
-                              spreadRadius: 4.0,
+                              spreadRadius: 9.0,
                             )
                           ],
                           borderRadius: BorderRadius.circular(15)),
-                      child: const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 15),
+                      child: Padding(
+                        padding: const EdgeInsets.all(10),
                         child: ListTile(
-                          title: Row(
+                          leading: Container(
+                            height: 100,
+                            width: 80,
+                            child: Container(
+                              width: 30,
+                              height: 30,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: Colors.green.withOpacity(0.2)),
+                              child: Center(
+                                  child: FaIcon(appIcons
+                                      .getExpenseCategoryIcons('milk'))),
+                            ),
+                          ),
+                          tileColor: Colors.white,
+                          title: const Row(
                             children: [
-                              Expanded(child: Text('Food Expense')),
+                              Expanded(
+                                  child: Text(
+                                'Food Expense',
+                                style: TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.w500),
+                              )),
                               Text(
                                 '₹ 8000',
                                 style: TextStyle(color: Colors.green),
                               ),
                             ],
                           ),
-                          subtitle: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  Text('Balance',
+                          subtitle: const Padding(
+                            padding: EdgeInsets.only(top: 5),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    Text('Balance',
+                                        style: TextStyle(
+                                            color: Colors.grey, fontSize: 16)),
+                                    Spacer(),
+                                    Text(
+                                      '₹ 500',
                                       style: TextStyle(
-                                          color: Colors.grey, fontSize: 14)),
-                                  Spacer(),
-                                  Text(
-                                    '₹ 500',
+                                        color: Colors.grey,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(top: 5),
+                                  child: Text(
+                                    '25 oct 4.55 PM',
                                     style: TextStyle(
                                         color: Colors.grey, fontSize: 14),
                                   ),
-                                ],
-                              ),
-                              Text(
-                                '25 oct 4.55 PM',
-                                style: TextStyle(color: Colors.grey),
-                              ),
-                            ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),

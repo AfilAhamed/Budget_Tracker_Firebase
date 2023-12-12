@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 class BottomBarScreen extends StatelessWidget {
   BottomBarScreen({super.key});
 
-  final pages = [const HomeScreen(), const Demo()];
+  final pages = [HomeScreen(), const Demo()];
 
   @override
   Widget build(BuildContext context) {

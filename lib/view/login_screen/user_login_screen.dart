@@ -1,5 +1,4 @@
 import 'package:budget_tracker/controller/user_login_controller.dart';
-// import 'package:budget_tracker/view/home_screen/home_screen.dart';
 import 'package:budget_tracker/view/signup_screen/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -199,7 +198,7 @@ class UserLoginScreen extends StatelessWidget {
                       onPressed: () {},
                       icon: const Image(
                           height: 30,
-                          image: AssetImage('lib/assets/google-logo.png'))),
+                          image: AssetImage('assets/google-logo.png'))),
                 ),
                 const SizedBox(
                   width: 10,
@@ -211,7 +210,7 @@ class UserLoginScreen extends StatelessWidget {
                   child: IconButton(
                       onPressed: () {},
                       icon: const Image(
-                          image: AssetImage('lib/assets/facebook-logo.png'))),
+                          image: AssetImage('assets/facebook-logo.png'))),
                 )
               ],
             )

@@ -141,8 +141,7 @@ class SignUpScreen extends StatelessWidget {
                             onPressed: () {},
                             icon: const Image(
                                 height: 30,
-                                image:
-                                    AssetImage('lib/assets/google-logo.png'))),
+                                image: AssetImage('assets/google-logo.png'))),
                       ),
                       const SizedBox(
                         width: 10,
@@ -154,8 +153,7 @@ class SignUpScreen extends StatelessWidget {
                         child: IconButton(
                             onPressed: () {},
                             icon: const Image(
-                                image: AssetImage(
-                                    'lib/assets/facebook-logo.png'))),
+                                image: AssetImage('assets/facebook-logo.png'))),
                       )
                     ],
                   )
