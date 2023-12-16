@@ -1,5 +1,5 @@
 import 'package:budget_tracker/controller/bottombar_controller.dart';
-import 'package:budget_tracker/view/demo/demo.dart';
+import 'package:budget_tracker/view/transactions_history_screen/transaction_screen.dart';
 import 'package:budget_tracker/view/home_screen/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 class BottomBarScreen extends StatelessWidget {
   BottomBarScreen({super.key});
 
-  final pages = [HomeScreen(), const Demo()];
+  final pages = [HomeScreen(), const TransactionHistoryScreen()];
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class BottomBarScreen extends StatelessWidget {
           ),
           NavigationDestination(
             selectedIcon: Icon(
-              Icons.home,
+              Icons.explore,
               color: Colors.white,
             ),
             icon: Icon(

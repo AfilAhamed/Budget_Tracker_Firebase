@@ -1,11 +1,13 @@
 import 'package:budget_tracker/services/auth_services.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class UserLoginController extends ChangeNotifier {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-  void login() async {
+  //for login to the app
+  Future<void> login() async {
     final data = {
       'email': emailController.text,
       'password': passwordController.text,
@@ -13,6 +15,16 @@ class UserLoginController extends ChangeNotifier {
     await AuthServices().loginUser(data);
 
     notifyListeners();
+  }
+
+  //log out from the app
+  Future<void> logout() async {
+    await FirebaseAuth.instance.signOut();
+  }
+
+  //google sign in
+  Future<UserCredential> signInWithGoogle() async {
+    return AuthServices().signInWithGoogle();
   }
 
   //validation for email

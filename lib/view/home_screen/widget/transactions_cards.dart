@@ -4,8 +4,14 @@ class TransactionsCard extends StatelessWidget {
   const TransactionsCard({
     super.key,
     required this.color,
+    required this.title,
+    required this.amount,
   });
   final Color color;
+  final String title;
+
+  final String amount;
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -21,11 +27,11 @@ class TransactionsCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Credit',
+                    title,
                     style: TextStyle(color: color, fontSize: 14),
                   ),
                   Text(
-                    '₹ 5850',
+                    '₹ ${amount}',
                     style: TextStyle(
                         color: color,
                         fontSize: 30,

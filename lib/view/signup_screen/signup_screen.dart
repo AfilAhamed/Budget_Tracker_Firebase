@@ -56,16 +56,6 @@ class SignUpScreen extends StatelessWidget {
                     height: 16.0,
                   ),
                   TextFormField(
-                    controller: signupProvider.phoneNumberController,
-                    keyboardType: TextInputType.number,
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    validator: signupProvider.validatePhoneNumber,
-                    decoration: inputDecration('Phone Number', Icons.phone),
-                  ),
-                  const SizedBox(
-                    height: 16.0,
-                  ),
-                  TextFormField(
                     controller: signupProvider.passwordController,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: signupProvider.validatePasswords,
@@ -85,7 +75,7 @@ class SignUpScreen extends StatelessWidget {
                               backgroundColor: Colors.blue.shade600),
                           onPressed: () {
                             if (formKey.currentState!.validate()) {
-                              signupProvider.sumbitData();
+                              signupProvider.signUp();
                               Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(

@@ -1,5 +1,6 @@
 import 'package:budget_tracker/controller/user_login_controller.dart';
-import 'package:budget_tracker/view/signup_screen/signup.dart';
+import 'package:budget_tracker/helpers/decoration.dart';
+import 'package:budget_tracker/view/signup_screen/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
@@ -49,15 +50,10 @@ class UserLoginScreen extends StatelessWidget {
                     validator: loginProvider.loginValidateEmail,
                     controller: loginProvider.emailController,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                        labelText: 'E-Mail',
-                        labelStyle: const TextStyle(
-                            fontWeight: FontWeight.w500, color: Colors.black),
-                        prefixIcon: const Icon(
-                          Iconsax.direct_right,
-                        )),
+                    decoration: inputDecration(
+                      'E-Mail',
+                      Iconsax.direct_right,
+                    ),
                   ),
                   const SizedBox(
                     height: 15,
@@ -117,13 +113,6 @@ class UserLoginScreen extends StatelessWidget {
                           onPressed: () {
                             if (formKey.currentState!.validate()) {
                               loginProvider.login();
-                              // loginProvider.emailController.clear();
-                              // loginProvider.passwordController.clear();
-                              // Navigator.pushReplacement(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //         builder: (context) =>
-                              //             const HomeScreen()));
                             }
                           },
                           child: Text(
@@ -195,7 +184,9 @@ class UserLoginScreen extends StatelessWidget {
                       border: Border.all(width: 1.5, color: Colors.grey),
                       borderRadius: BorderRadius.circular(100)),
                   child: IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        loginProvider.signInWithGoogle();
+                      },
                       icon: const Image(
                           height: 30,
                           image: AssetImage('assets/google-logo.png'))),

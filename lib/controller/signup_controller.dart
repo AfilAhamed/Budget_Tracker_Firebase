@@ -1,20 +1,22 @@
+import 'package:budget_tracker/model/total_amount_model.dart';
 import 'package:budget_tracker/services/auth_services.dart';
 import 'package:flutter/material.dart';
 
 class SignUpController extends ChangeNotifier {
   final TextEditingController userNameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
-  final TextEditingController phoneNumberController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  void sumbitData() async {
-    final data = {
-      'username': userNameController.text,
+  // sign up to the app
+  void signUp() async {
+    final userDatas = {
+      'userName': userNameController.text,
       'email': emailController.text,
-      'phone number': phoneNumberController.text,
       'password': passwordController.text,
     };
-    await AuthServices().createUsers(data);
+    final transactionData =
+        TotalAmountModel(totalBalance: 0, totalCredit: 0, totalDebit: 0);
+    await AuthServices().createUsers(userDatas, transactionData);
     notifyListeners();
   }
 
@@ -36,19 +38,6 @@ class SignUpController extends ChangeNotifier {
         r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
     if (!emailRegExp.hasMatch(value)) {
       return 'Please enter a valid email';
-    } else {
-      return null;
-    }
-  }
-
-  //validation for phone number
-  String? validatePhoneNumber(value) {
-    if (value == null || value.isEmpty) {
-      return 'Please enter a phone number';
-    }
-
-    if (value.length != 10) {
-      return 'Please enter a 10-digit phone number';
     } else {
       return null;
     }
