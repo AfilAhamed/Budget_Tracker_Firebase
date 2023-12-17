@@ -30,7 +30,7 @@ class TransactionServices {
         .delete();
   }
 
-  //update transactions details from Db
+  //update transaction details from Db
   Future<void> updateTransactionFromDb(String id, TransactionModel data) async {
     await userCollection
         .doc(userId)
