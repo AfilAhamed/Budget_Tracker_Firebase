@@ -7,7 +7,7 @@ class TransactionServices {
       FirebaseFirestore.instance.collection('users');
   final userId = FirebaseAuth.instance.currentUser!.uid;
 
-  // add Transactions Details to Db
+  // add Transaction Details to Db
   Future<void> addTransactionToDb(data, id) async {
     await userCollection
         .doc(userId)
